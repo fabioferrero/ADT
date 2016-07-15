@@ -135,7 +135,7 @@ int list_size(List list) {
 }
 
 void list_destroy(List list) {
-    for (link x = list->head; list->head != NULL; x = list->head) {
+    for (link x = list->head; x != NULL; x = list->head) {
         list->head = list->head->next;
         free(x);
     }
@@ -144,7 +144,12 @@ void list_destroy(List list) {
 }
 
 Item * list_toArray(List list) {
-    return NULL;
+    Item * array = malloc(list->size * sizeof(Item));
+    int i = 0;
+    for (link x = list->head; x != NULL; x = x->next) {
+        array[i++] = x->item;
+    }
+    return array;
 }
 
 // TODO remove dependency on the type of the element of the list

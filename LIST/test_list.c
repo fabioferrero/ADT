@@ -68,7 +68,12 @@ int main() {
     list_print(myList);
     printf("\nList size: %d\n", list_size(myList));
 
+    // Try toArray
+    Item * myArray = list_toArray(myList);
+    printf("Array of 2: %d\n", myArray[2]);
+
     list_destroy(myList);
+    free(myArray);
 
     printf("List destroyed\n");
 
