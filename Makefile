@@ -8,3 +8,4 @@ list.o : list.h
 
 clean :
 	rm -f *.o */*.o
+	rm -rf *.dSYM
