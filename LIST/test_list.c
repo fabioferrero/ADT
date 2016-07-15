@@ -49,10 +49,24 @@ int main() {
     // Remove two elements
     list_remove(myList, 5);
     printf("Removed at index 5\n");
-    list_print(myList); printf("\n");
+    list_print(myList);
+    printf("\nList size: %d\n", list_size(myList));
+
     list_remove(myList, 4);
     printf("Removed at index 4\n");
-    list_print(myList); printf("\n");
+    list_print(myList);
+    printf("\nList size: %d\n", list_size(myList));
+
+    // Set two elements
+    list_set(myList, 0, 0);
+    printf("Setted 0 = 0\n");
+    list_print(myList);
+    printf("\nList size: %d\n", list_size(myList));
+
+    list_set(myList, 1, 1);
+    printf("Setted 1 = 1\n");
+    list_print(myList);
+    printf("\nList size: %d\n", list_size(myList));
 
     list_destroy(myList);
 

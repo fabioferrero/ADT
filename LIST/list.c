@@ -114,6 +114,19 @@ Item list_get(List list, int index) {
 }
 
 Item list_set(List list, int index, Item item) {
+    if (index >= list->size) {
+        // index exeeds list size
+        return NULL_ITEM;
+    }
+    int i = 0;
+    for (link x = list->head; x != NULL; x = x->next) {
+        if (i == index) {
+            Item prev = x->item;
+            x->item = item;
+            return prev;
+        }
+        else { i++; }
+    }
     return NULL_ITEM;
 }
 
