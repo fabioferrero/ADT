@@ -33,7 +33,17 @@ int main() {
     elem = list_get(myList, 1);
 
     printf("\nSecond element: %d\n", elem);
+    printf("List size: %d\n", list_size(myList));
 
+    /* Try to set the second element as 0 */
+    list_insert(myList, 0, 1);
+    printf("Inserted 0 at index 1\n");
+
+    list_print(myList);
+
+    elem = list_get(myList, 1);
+
+    printf("\nSecond element: %d\n", elem);
     printf("List size: %d\n", list_size(myList));
 
     list_destroy(myList);

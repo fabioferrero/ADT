@@ -49,7 +49,20 @@ void list_add(List list, Item item) {
 }
 
 void list_insert(List list, Item item, int index) {
-
+    int i = 0;
+    if (index > list->size) {
+        // index exeeds list size
+        return;
+    }
+    for (link x = list->head; x != NULL; x = x->next) {
+        if (i == index) {
+            x->next = new_Node(x->item, x->next);
+            x->item = item;
+            list->size++;
+            return;
+        }
+        else { i++; }
+    }
 }
 
 Item list_remove(List list, int index) {
@@ -59,7 +72,7 @@ Item list_remove(List list, int index) {
 Item list_get(List list, int index) {
     int i = 0;
     if (index >= list->size) {
-        // List is empty
+        // index exceeds list size
         return NULL_ITEM;
     }
     for (link x = list->head; x != NULL; x = x->next) {
