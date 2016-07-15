@@ -49,11 +49,11 @@ void list_add(List list, Item item) {
 }
 
 void list_insert(List list, Item item, int index) {
-    int i = 0;
     if (index > list->size) {
         // index exeeds list size
         return;
     }
+    int i = 0;
     for (link x = list->head; x != NULL; x = x->next) {
         if (i == index) {
             x->next = new_Node(x->item, x->next);
@@ -63,18 +63,49 @@ void list_insert(List list, Item item, int index) {
         }
         else { i++; }
     }
+    if (i == list->size) {
+        // Case of insertion at first position after last element
+        list->tail->next = new_Node(item, NULL);
+        list->tail = list->tail->next;
+        list->size++;
+    }
 }
 
 Item list_remove(List list, int index) {
+    if (index >= list->size) {
+        // index exeeds list size
+        return NULL_ITEM;
+    }
+    if (index == 0) {
+        link x = list->head;
+        list->head = list->head->next;
+        Item item = x->item;
+        free(x);
+        list->size--;
+        return item;
+    }
+    int i = 0;
+    index--;
+    for (link x = list->head; x != NULL; x = x->next) {
+        if (i == index) {
+            link y = x->next;
+            x->next = x->next->next;
+            Item item = y->item;
+            free(y);
+            list->size--;
+            return item;
+        }
+        else { i++; }
+    }
     return NULL_ITEM;
 }
 
 Item list_get(List list, int index) {
-    int i = 0;
     if (index >= list->size) {
         // index exceeds list size
         return NULL_ITEM;
     }
+    int i = 0;
     for (link x = list->head; x != NULL; x = x->next) {
         if (i == index) { return x->item; }
         else { i++; }
